@@ -30,7 +30,7 @@ Before running this application, make sure you have the following installed:
 - **Apache Tomcat 9.0 or higher**
 - **MySQL Server 5.7 or XAMP Server**
 - **MySQL JDBC Driver (mysql-connector-java)**
-- **IDE**: Eclipse, IntelliJ IDEA, or any Java IDE
+- **IDE**: Eclipse (J2EE), IntelliJ IDEA, or any Java IDE
 - **Web Browser**: Chrome, Firefox, or Edge
 
 ## 🛠️ Project Structure
@@ -198,13 +198,12 @@ http://localhost:8080/MarkWebApp/
 
 ### Security Features
 - Prepared statements to prevent SQL injection
-- Input sanitization and validation
+- Input validation
 - Session management
 
 ### Responsive Design
 - Bootstrap 5.3 framework
-- Mobile-friendly interface
-- Professional styling with hover effects
+- Styling with hover effects
 - Print-friendly report layouts
 
 ## 🧪 Testing the Application
@@ -248,6 +247,3 @@ This project demonstrates:
 - **Report Generation**: Dynamic data analysis and presentation
 - **Professional UI**: Responsive design with Bootstrap
 
-
-- Audit trail for changes
-- RESTful API endpoints
