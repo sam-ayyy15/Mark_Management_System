@@ -1,5 +1,12 @@
 # Student Mark Management System
+---
+**Subject Name**: Advanced Java  
+**Subject Code**: BCS613D  
+**Name**: Samay Shetty  
+**USN**: 4AL22CS143  
+**Sem/Section**: VI/C  
 
+---
 A comprehensive web application for managing student examination marks built with JSP, Servlets, and MySQL following MVC architecture principles.
 
 ## 🚀 Features
