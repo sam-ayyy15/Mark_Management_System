@@ -21,10 +21,10 @@ Before running this application, make sure you have the following installed:
 
 - **Java Development Kit (JDK) 8 or higher**
 - **Apache Tomcat 9.0 or higher**
-- **MySQL Server 5.7 or higher**
+- **MySQL Server 5.7 or XAMP Server**
 - **MySQL JDBC Driver (mysql-connector-java)**
 - **IDE**: Eclipse, IntelliJ IDEA, or any Java IDE
-- **Web Browser**: Chrome, Firefox, Safari, or Edge
+- **Web Browser**: Chrome, Firefox, or Edge
 
 ## 🛠️ Project Structure
 
