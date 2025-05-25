@@ -78,11 +78,11 @@ CREATE TABLE IF NOT EXISTS StudentMarks (
 ### 3. Insert Sample Data
 ```sql
 INSERT INTO StudentMarks VALUES 
-(1001, 'John Smith', 'Mathematics', 85, '2025-04-10'),
-(1002, 'Emma Johnson', 'Physics', 92, '2025-04-12'),
-(1003, 'Michael Brown', 'Chemistry', 78, '2025-04-15'),
-(1004, 'Sarah Wilson', 'Biology', 89, '2025-04-10'),
-(1005, 'David Miller', 'Computer Science', 95, '2025-04-18');
+(1001, 'Samay Shetty', 'Mathematics', 85, '2025-04-10'),
+(1002, 'Glanil Dsouza', 'Physics', 92, '2025-04-12'),
+(1003, 'Shravya Nair', 'Chemistry', 78, '2025-04-15'),
+(1004, 'Swanjith AS', 'Biology', 89, '2025-04-10'),
+(1005, 'Siddharth SM', 'Computer Science', 95, '2025-04-18');
 ```
 
 ## ⚙️ Installation & Setup
@@ -118,7 +118,7 @@ Open your web browser and navigate to:
 http://localhost:8080/MarkWebApp/
 ```
 
-## 🎯 Usage Guide
+## 🎯 Usage Application
 
 ### Adding Student Marks
 1. Navigate to "Add Marks" from the main menu
@@ -208,44 +208,9 @@ http://localhost:8080/MarkWebApp/
    - Test with different criteria values
    - Verify statistics calculations
 
-## 🚨 Troubleshooting
 
-### Common Issues:
 
-1. **Database Connection Failed**:
-   - Check MySQL server is running
-   - Verify database credentials in MarkDAO.java
-   - Ensure MySQL JDBC driver is in classpath
-
-2. **404 Error**:
-   - Check project deployment in Tomcat
-   - Verify servlet mappings in web.xml
-   - Ensure all JSP files are in correct locations
-
-3. **500 Internal Server Error**:
-   - Check Tomcat logs for detailed error messages
-   - Verify all required libraries are included
-   - Check for compilation errors
-
-4. **Validation Not Working**:
-   - Ensure Bootstrap JavaScript is loaded
-   - Check browser console for JavaScript errors
-   - Verify form field names match servlet parameters
-
-## 📝 Demo Queries
-
-During demonstration, showcase these scenarios:
-
-1. **Adding a new student**: Demonstrate input validation
-2. **Updating existing record**: Show search and update functionality
-3. **Deleting a record**: Demonstrate confirmation process
-4. **Displaying all records**: Show table with action buttons
-5. **Generating reports**: 
-   - Students above threshold (try threshold = 80)
-   - Students by subject (try "Mathematics")
-   - Top 5 students
-
-## 🎓 Learning Outcomes
+## 🎓 Outcomes
 
 This project demonstrates:
 - **MVC Architecture**: Clear separation between Model, View, and Controller
@@ -255,21 +220,6 @@ This project demonstrates:
 - **Report Generation**: Dynamic data analysis and presentation
 - **Professional UI**: Responsive design with Bootstrap
 
-## 📞 Support
 
-If you encounter any issues:
-1. Check the troubleshooting section above
-2. Verify all prerequisites are installed correctly
-3. Ensure database setup is completed properly
-4. Check Tomcat server logs for detailed error information
-
-## 🔄 Future Enhancements
-
-Possible improvements for the system:
-- User authentication and authorization
-- Export reports to PDF/Excel
-- Advanced search filters
-- Student photo upload
-- Email notifications
 - Audit trail for changes
 - RESTful API endpoints
