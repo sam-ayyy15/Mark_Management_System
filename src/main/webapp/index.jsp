@@ -5,260 +5,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Mark Management System</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
-        body {
-            background-color: #f8f9fa;
-            padding-top: 30px;
-        }
-        .card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .card:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .card-header {
-            background-color: #3498db;
-            color: white;
-            font-weight: bold;
-            border-radius: 10px 10px 0 0 !important;
-        }
-        .btn-primary {
-            background-color: #3498db;
-            border-color: #3498db;
-        }
-        .btn-primary:hover {
-            background-color: #2980b9;
-            border-color: #2980b9;
-        }
-        .jumbotron {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-        .jumbotron::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            z-index: 1;
-        }
-        .jumbotron .content {
-            position: relative;
-            z-index: 2;
-        }
-        .jumbotron h1 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin-bottom: 1rem;
-            font-size: 3rem;
-            letter-spacing: -1px;
-        }
-        .jumbotron .lead {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            color: #f8f9fa;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            font-size: 1.3rem;
-            margin-bottom: 0;
-            opacity: 0.95;
-        }
-        @media (max-width: 768px) {
-            .jumbotron h1 {
-                font-size: 2.2rem;
-            }
-            .jumbotron .lead {
-                font-size: 1.1rem;
-            }
-        }
-        .feature-icon {
-            font-size: 40px;
-            color: #3498db;
-            margin-bottom: 15px;
-        }
-        .nav-pills .nav-link.active {
-            background-color: #3498db;
+        /* Simple reset and basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        /* Footer Styles */
-        .footer {
-            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
-            color: white;
-            padding: 40px 0 20px 0;
-            margin-top: 50px;
-            border-radius: 15px 15px 0 0;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
         }
-        .footer h5 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #fff;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header section */
+        .header {
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+        }
+        
+        /* Main content area */
+        .main-content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Navigation sidebar */
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 12px 15px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .nav-menu a.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        /* Features section */
+        .features {
+            flex: 2;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .features h3 {
+            color: #2196F3;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: #2196F3;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            background-color: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #1976D2;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
             margin-bottom: 20px;
         }
-        .footer p, .footer li {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            color: #ecf0f1;
-            line-height: 1.6;
+        
+        .footer-section {
+            margin-bottom: 20px;
         }
-        .footer ul {
+        
+        .footer-section h4 {
+            color: #64B5F6;
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
             list-style: none;
-            padding: 0;
         }
-        .footer ul li {
-            margin-bottom: 8px;
+        
+        .footer-section ul li {
+            margin-bottom: 5px;
         }
-        .footer ul li a {
-            color: #ecf0f1;
+        
+        .footer-section a {
+            color: #ccc;
             text-decoration: none;
-            transition: color 0.3s ease;
         }
-        .footer ul li a:hover {
-            color: #fff;
-            text-decoration: underline;
+        
+        .footer-section a:hover {
+            color: white;
         }
+        
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 30px;
-            padding-top: 20px;
-            text-align: center;
+            border-top: 1px solid #555;
+            padding-top: 15px;
+            color: #ccc;
         }
-        .footer-bottom p {
-            margin: 0;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        .social-icons {
-            margin-top: 15px;
-        }
-        .social-icons a {
-            color: #ecf0f1;
-            font-size: 20px;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: #fff;
-        }
+        
+    
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="jumbotron text-center">
-            <div class="content">
-                <h1 class="display-4">Student Mark Management System</h1>
-                <p class="lead">A comprehensive system to manage student examination marks</p>
-            </div>
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Student Mark Management System</h1>
+            <p>Simple and efficient way to manage student examination marks</p>
         </div>
         
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-header">
-                        Navigation
-                    </div>
-                    <div class="card-body">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="index.jsp">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="markadd.jsp">Add Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="markupdate.jsp">Update Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="markdelete.jsp">Delete Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="DisplayMarksServlet">Display Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="report_form.jsp">Generate Reports</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navigation Sidebar -->
+            <div class="sidebar">
+                <h3>Navigation Menu</h3>
+                <ul class="nav-menu">
+                    <li><a href="index.jsp" class="active">🏠 Home</a></li>
+                    <li><a href="markadd.jsp">➕ Add Marks</a></li>
+                    <li><a href="markupdate.jsp">✏️ Update Marks</a></li>
+                    <li><a href="markdelete.jsp">🗑️ Delete Marks</a></li>
+                    <li><a href="DisplayMarksServlet">📊 Display Marks</a></li>
+                    <li><a href="report_form.jsp">📈 Generate Reports</a></li>
+                </ul>
             </div>
             
-            <div class="col-lg-9">
-                <div class="card">
-                    <div class="card-header">
-                        Available Features
+            <!-- Features Section -->
+            <div class="features">
+                <h3>System Features</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h4>Add Student Marks</h4>
+                        <p>Add new student examination marks to the database</p>
+                        <a href="markadd.jsp" class="btn">Add Marks</a>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 text-center mb-4">
-                                <div class="feature-icon">
-                                    <i class="bi bi-plus-circle"></i>📝
-                                </div>
-                                <h5>Add Student Marks</h5>
-                                <p>Add new student examination marks to the system</p>
-                                <a href="markadd.jsp" class="btn btn-primary">Add Marks</a>
-                            </div>
-                            
-                            <div class="col-md-4 text-center mb-4">
-                                <div class="feature-icon">
-                                    <i class="bi bi-pencil-square"></i>✏️
-                                </div>
-                                <h5>Update Marks</h5>
-                                <p>Modify existing student examination records</p>
-                                <a href="markupdate.jsp" class="btn btn-primary">Update Marks</a>
-                            </div>
-                            
-                            <div class="col-md-4 text-center mb-4">
-                                <div class="feature-icon">
-                                    <i class="bi bi-trash"></i>🗑️
-                                </div>
-                                <h5>Delete Marks</h5>
-                                <p>Remove student examination records from the system</p>
-                                <a href="markdelete.jsp" class="btn btn-primary">Delete Marks</a>
-                            </div>
-                            
-                            <div class="col-md-4 text-center mb-4">
-                                <div class="feature-icon">
-                                    <i class="bi bi-table"></i>📊
-                                </div>
-                                <h5>Display Marks</h5>
-                                <p>View all student marks or search by student ID</p>
-                                <a href="DisplayMarksServlet" class="btn btn-primary">Display Marks</a>
-                            </div>
-                            
-                            <div class="col-md-4 text-center mb-4">
-                                <div class="feature-icon">
-                                    <i class="bi bi-file-bar-graph"></i>📈
-                                </div>
-                                <h5>Generate Reports</h5>
-                                <p>Create various reports based on student performance</p>
-                                <a href="report_form.jsp" class="btn btn-primary">Generate Reports</a>
-                            </div>
-                            
-                            <div class="col-md-4 text-center mb-4">
-                                <div class="feature-icon">
-                                    <i class="bi bi-info-circle"></i>ℹ️
-                                </div>
-                                <h5>About</h5>
-                                <p>Learn more about the Student Mark Management System</p>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutModal">
-                                    About System
-                                </button>
-                            </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">✏️</div>
+                        <h4>Update Marks</h4>
+                        <p>Modify existing student examination records</p>
+                        <a href="markupdate.jsp" class="btn">Update Marks</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🗑️</div>
+                        <h4>Delete Marks</h4>
+                        <p>Remove student records from the system</p>
+                        <a href="markdelete.jsp" class="btn">Delete Marks</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Display Marks</h4>
+                        <p>View all student marks or search by student ID</p>
+                        <a href="DisplayMarksServlet" class="btn">Display Marks</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h4>Generate Reports</h4>
+                        <p>Create reports based on student performance</p>
+                        <a href="report_form.jsp" class="btn">Generate Reports</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">ℹ️</div>
+                        <h4>About System</h4>
+                        <p>This system helps manage student examination marks efficiently using JSP, Servlets, and JDBC for reliable database operations.</p>
+                        <div style="margin-top: 15px; text-align: left;">
+                            <strong>Key Features:</strong>
+                            <ul style="margin-top: 10px; text-align: left;">
+                                <li>Add new student marks</li>
+                                <li>Update existing records</li>
+                                <li>Delete records when needed</li>
+                                <li>View all records or search by ID</li>
+                                <li>Generate performance reports</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -267,70 +296,30 @@
     </div>
     
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Student Mark Management System</h5>
-                    <p>A comprehensive platform designed to efficiently manage and track student examination marks with advanced reporting capabilities.</p>
-                    <div class="social-icons">
-                        <a href="https://github.com/sam-ayyy15" title="Github">📂</a>
-                        <a href="https://x.com/home" title="Twitter">𝕏</a>
-                        <a href="www.linkedin.com/in/samayshetty" title="LinkedIn">📧</a>
-                        <a href="https://www.instagram.com/sam.ayyy15/?__pwa=1" title="Instagram">🅾</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Start</h5>
-                    <ul>
-                        <li><a href="index.jsp">Home</a></li>
-                        <li><a href="markadd.jsp">Add Marks</a></li>
-                        <li><a href="markupdate.jsp">Update Marks</a></li>
-                        <li><a href="DisplayMarksServlet">Display Marks</a></li>
-                        <li><a href="report_form.jsp">Generate Reports</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Support</h5>
-                    <ul>
-                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About System</a></li>
-                   
-                    </ul>
-                </div>
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Student Mark Management</h4>
+                <p>Simple platform to manage student examination marks</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Student Mark Management System | Designed by Samay Shetty - 4AL22CS143</p>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="markadd.jsp">Add Marks</a></li>
+                    <li><a href="DisplayMarksServlet">Display Marks</a></li>
+                    <li><a href="report_form.jsp">Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📧 Email: support@markmanagement.com</p>
+                <p>📱 Phone: +1 234 567 8900</p>
             </div>
         </div>
-    </footer>
-    
-    <!-- About Modal -->
-    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="aboutModalLabel">About Student Mark Management System</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>This system was developed to manage student examination marks efficiently. It follows the MVC architecture pattern and utilizes JSP, Servlets, and JDBC for database operations.</p>
-                    <p>Key features include:</p>
-                    <ul>
-                        <li>Adding new student marks</li>
-                        <li>Updating existing records</li>
-                        <li>Deleting records</li>
-                        <li>Displaying all records or searching by student ID</li>
-                        <li>Generating various reports like top performers, subject-wise performance, etc.</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Student Mark Management System | Designed by Samay Shetty - 4AL22CS143</p>
         </div>
     </div>
-    
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -8,121 +8,393 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report Results - Mark Management System</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
+        /* Simple reset and basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background-color: #f8f9fa;
-            padding-top: 30px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
         }
-        .card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .card:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .card-header {
-            background-color: #3498db;
+        
+        /* Header section */
+        .header {
+            background-color: #2196F3;
             color: white;
-            font-weight: bold;
-            border-radius: 10px 10px 0 0 !important;
-        }
-        .btn-primary {
-            background-color: #3498db;
-            border-color: #3498db;
-        }
-        .btn-primary:hover {
-            background-color: #2980b9;
-            border-color: #2980b9;
-        }
-        .alert {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 30px;
             border-radius: 8px;
         }
-        .nav-pills .nav-link.active {
-            background-color: #3498db;
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
         }
-        .table {
-            margin-bottom: 0;
+        
+        /* Main content area */
+        .main-content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .table thead th {
-            background-color: #3498db;
+        
+        /* Navigation sidebar */
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 12px 15px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #2196F3;
             color: white;
-            border: none;
         }
-        .table tbody tr:hover {
-            background-color: #f8f9fa;
+        
+        .nav-menu a.active {
+            background-color: #2196F3;
+            color: white;
         }
-        .badge {
+        
+        /* Results section */
+        .results-section {
+            flex: 2;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .results-section h3 {
+            color: #2196F3;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        /* Alert messages */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        /* Report header */
+        .report-header {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        
+        .report-header h4 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        
+        .report-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .report-date {
+            color: #666;
             font-size: 0.9em;
         }
-        .stats-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        /* Statistics cards */
+        .stats-container {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
             color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
         }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
         .stats-item {
             text-align: center;
         }
+        
         .stats-number {
             font-size: 2rem;
             font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
         }
+        
         .stats-label {
             font-size: 0.9rem;
             opacity: 0.9;
         }
+        
+        /* Table styling */
+        .table-container {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        
+        .table-header {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .table th {
+            background-color: #2196F3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border: none;
+            font-weight: bold;
+        }
+        
+        .table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        /* Badge styling */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        
+        .badge-primary {
+            background-color: #2196F3;
+        }
+        
+        .badge-success {
+            background-color: #28a745;
+        }
+        
+        .badge-warning {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .badge-danger {
+            background-color: #dc3545;
+        }
+        
+        .badge-rank {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        /* Button styling */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        /* Empty state styling */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .empty-state h4 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+        
+        /* Print styles */
         @media print {
             .no-print {
                 display: none !important;
             }
+            
+            .sidebar {
+                display: none !important;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .results-section {
+                flex: none;
+            }
+            
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .header {
+                background-color: #2196F3 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
         }
+        
+       
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 no-print">
-                <div class="card">
-                    <div class="card-header">
-                        Navigation
-                    </div>
-                    <div class="card-body">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.jsp">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="markadd.jsp">Add Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="markupdate.jsp">Update Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="markdelete.jsp">Delete Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="DisplayMarksServlet">Display Marks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="report_form.jsp">Generate Reports</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Report Results</h1>
+            <p>Detailed analysis of student performance data</p>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navigation Sidebar -->
+            <div class="sidebar no-print">
+                <h3>Navigation Menu</h3>
+                <ul class="nav-menu">
+                    <li><a href="index.jsp">🏠 Home</a></li>
+                    <li><a href="markadd.jsp">➕ Add Marks</a></li>
+                    <li><a href="markupdate.jsp">✏️ Update Marks</a></li>
+                    <li><a href="markdelete.jsp">🗑️ Delete Marks</a></li>
+                    <li><a href="DisplayMarksServlet">📊 Display Marks</a></li>
+                    <li><a href="report_form.jsp" class="active">📈 Generate Reports</a></li>
+                </ul>
             </div>
             
-            <div class="col-lg-9">
+            <!-- Results Section -->
+            <div class="results-section">
                 <!-- Display error messages if any -->
                 <% if (request.getAttribute("errorMessage") != null) { %>
-                    <div class="alert alert-danger alert-dismissible fade show no-print" role="alert">
+                    <div class="alert alert-danger no-print">
                         <%= request.getAttribute("errorMessage") %>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <% } %>
                 
@@ -146,139 +418,119 @@
                         double averageMarks = totalMarks / reportResults.size();
                 %>
                 
+                <h3><%= reportTitle != null ? reportTitle : "Report Results" %></h3>
+                
                 <!-- Report Header -->
-                <div class="card">
-                    <div class="card-header">
-                        <%= reportTitle != null ? reportTitle : "Report Results" %>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="mb-0">Generated on: <%= new java.util.Date() %></h6>
-                            <div class="no-print">
-                                <button onclick="window.print()" class="btn btn-outline-primary btn-sm me-2">🖨️ Print Report</button>
-                                <a href="report_form.jsp" class="btn btn-secondary btn-sm">🔙 New Report</a>
-                            </div>
+                <div class="report-header">
+                    <div class="report-actions">
+                        <div class="report-date">Generated on: <%= new java.util.Date() %></div>
+                        <div class="no-print">
+                            <button onclick="window.print()" class="btn btn-outline">🖨️ Print Report</button>
+                            <a href="report_form.jsp" class="btn btn-secondary">🔙 New Report</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Statistics -->
-                <div class="stats-card">
-                    <div class="row">
-                        <div class="col-md-3 stats-item">
-                            <div class="stats-number"><%= reportResults.size() %></div>
-                            <div class="stats-label">Total Students</div>
+                <div class="stats-container">
+                    <div class="stats-grid">
+                        <div class="stats-item">
+                            <span class="stats-number"><%= reportResults.size() %></span>
+                            <span class="stats-label">Total Students</span>
                         </div>
-                        <div class="col-md-3 stats-item">
-                            <div class="stats-number"><%= String.format("%.1f", averageMarks) %></div>
-                            <div class="stats-label">Average Marks</div>
+                        <div class="stats-item">
+                            <span class="stats-number"><%= String.format("%.1f", averageMarks) %></span>
+                            <span class="stats-label">Average Marks</span>
                         </div>
-                        <div class="col-md-3 stats-item">
-                            <div class="stats-number"><%= maxMarks %></div>
-                            <div class="stats-label">Highest Marks</div>
+                        <div class="stats-item">
+                            <span class="stats-number"><%= maxMarks %></span>
+                            <span class="stats-label">Highest Marks</span>
                         </div>
-                        <div class="col-md-3 stats-item">
-                            <div class="stats-number"><%= minMarks %></div>
-                            <div class="stats-label">Lowest Marks</div>
+                        <div class="stats-item">
+                            <span class="stats-number"><%= minMarks %></span>
+                            <span class="stats-label">Lowest Marks</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Results Table -->
-                <div class="card">
-                    <div class="card-header">
+                <div class="table-container">
+                    <div class="table-header">
                         Detailed Results
                     </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Rank</th>
-                                        <th>Student ID</th>
-                                        <th>Name</th>
-                                        <th>Subject</th>
-                                        <th>Marks</th>
-                                        <th>Grade</th>
-                                        <th>Exam Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% 
-                                    int rank = 1;
-                                    for (StudentMark mark : reportResults) { %>
-                                    <tr>
-                                        <td>
-                                            <% if (rank <= 3) { %>
-                                                <span class="badge bg-warning">🏆 <%= rank %></span>
-                                            <% } else { %>
-                                                <%= rank %>
-                                            <% } %>
-                                        </td>
-                                        <td><%= mark.getStudentId() %></td>
-                                        <td><%= mark.getStudentName() %></td>
-                                        <td><span class="badge bg-primary"><%= mark.getSubject() %></span></td>
-                                        <td>
-                                            <span class="badge <%= mark.getMarks() >= 80 ? "bg-success" : mark.getMarks() >= 60 ? "bg-warning" : "bg-danger" %>">
-                                                <%= mark.getMarks() %>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge <%= mark.getMarks() >= 80 ? "bg-success" : mark.getMarks() >= 60 ? "bg-warning" : "bg-danger" %>">
-                                                <%= mark.getMarks() >= 80 ? "A" : mark.getMarks() >= 60 ? "B" : "C" %>
-                                            </span>
-                                        </td>
-                                        <td><%= dateFormat.format(mark.getExamDate()) %></td>
-                                    </tr>
-                                    <% 
-                                        rank++;
-                                    } %>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Subject</th>
+                                    <th>Marks</th>
+                                    <th>Grade</th>
+                                    <th>Exam Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                int rank = 1;
+                                for (StudentMark mark : reportResults) { %>
+                                <tr>
+                                    <td>
+                                        <% if (rank <= 3) { %>
+                                            <span class="badge badge-rank">🏆 <%= rank %></span>
+                                        <% } else { %>
+                                            <%= rank %>
+                                        <% } %>
+                                    </td>
+                                    <td><%= mark.getStudentId() %></td>
+                                    <td><%= mark.getStudentName() %></td>
+                                    <td><span class="badge badge-primary"><%= mark.getSubject() %></span></td>
+                                    <td>
+                                        <span class="badge <%= mark.getMarks() >= 80 ? "badge-success" : mark.getMarks() >= 60 ? "badge-warning" : "badge-danger" %>">
+                                            <%= mark.getMarks() %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge <%= mark.getMarks() >= 80 ? "badge-success" : mark.getMarks() >= 60 ? "badge-warning" : "badge-danger" %>">
+                                            <%= mark.getMarks() >= 80 ? "A" : mark.getMarks() >= 60 ? "B" : "C" %>
+                                        </span>
+                                    </td>
+                                    <td><%= dateFormat.format(mark.getExamDate()) %></td>
+                                </tr>
+                                <% 
+                                    rank++;
+                                } %>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 
                 <% } else if (reportResults != null) { %>
                 
                 <!-- No Results Found -->
-                <div class="card">
-                    <div class="card-header">
-                        <%= reportTitle != null ? reportTitle : "Report Results" %>
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="mb-4">
-                            <i style="font-size: 48px; color: #6c757d;">📊</i>
-                        </div>
-                        <h5 class="text-muted">No Results Found</h5>
-                        <p class="text-muted">No student records match the specified criteria.</p>
-                        <a href="report_form.jsp" class="btn btn-primary">Generate New Report</a>
-                    </div>
+                <h3><%= reportTitle != null ? reportTitle : "Report Results" %></h3>
+                <div class="empty-state">
+                    <span class="empty-state-icon">📊</span>
+                    <h4>No Results Found</h4>
+                    <p>No student records match the specified criteria.</p>
+                    <a href="report_form.jsp" class="btn btn-primary">Generate New Report</a>
                 </div>
                 
                 <% } else { %>
                 
                 <!-- Default view - no report generated -->
-                <div class="card">
-                    <div class="card-header">
-                        Report Results
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="mb-4">
-                            <i style="font-size: 48px; color: #6c757d;">📈</i>
-                        </div>
-                        <h5 class="text-muted">No Report Generated</h5>
-                        <p class="text-muted">Please generate a report first to see the results.</p>
-                        <a href="report_form.jsp" class="btn btn-primary">Generate Report</a>
-                    </div>
+                <h3>Report Results</h3>
+                <div class="empty-state">
+                    <span class="empty-state-icon">📈</span>
+                    <h4>No Report Generated</h4>
+                    <p>Please generate a report first to see the results.</p>
+                    <a href="report_form.jsp" class="btn btn-primary">Generate Report</a>
                 </div>
                 
                 <% } %>
             </div>
         </div>
     </div>
-    
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
